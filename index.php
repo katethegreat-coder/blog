@@ -31,4 +31,4 @@ require_once('inc/close.php');
     <?php endforeach; ?>
    
 </body>
-</html>
+</html> 
