@@ -31,7 +31,7 @@ require_once('inc/close.php');                             // disconnect from th
                     <tr> 
                         <td><?=$category ['id'] ?></td>
                         <td><?=$category ['name'] ?></td>
-                        <td>update delete</td>
+                        <td><a href="update_category.php?id=<?=$category['id']?>">update </a> <a href="delete_category.php?id=<?=$category['id']?>">delete</a></td>
                     </tr> 
                 <?php endforeach; ?>
         </tbody>
