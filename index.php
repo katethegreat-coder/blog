@@ -2,7 +2,7 @@
  
 require_once('inc/connect.php');
 
-$sql='SELECT `articles`.*, GROUP_CONCAT(`categories`.`name`) AS category_name FROM `articles` LEFT JOIN `articles_categories` ON `articles`.`id`=`articles_categories`.`articles_id` LEFT JOIN `categories` ON `articles_categories`.`categories_id`=`categories`.`id` GROUP BY `articles`.`id` ORDER BY `created_at`;';
+$sql='SELECT `articles`.*, GROUP_CONCAT(`categories`.`name`) AS category_name FROM `articles` LEFT JOIN `articles_categories` ON `articles`.`id`=`articles_categories`.`articles_id` LEFT JOIN `categories` ON `articles_categories`.`categories_id`=`categories`.`id` GROUP BY `articles`.`id` ORDER BY `created_at` DESC;';
 $query=$db->query($sql);
 $articles=$query->fetchAll(PDO::FETCH_ASSOC);           // always a foreach after
 
