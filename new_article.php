@@ -55,12 +55,19 @@ if(isset($_POST) && !empty($_POST)) {
             // generate a random name
             $name= md5(uniqid()).'.'.$extension;
             // generate the entire name with the absolute path & the name
-            $entirename= __DIR__ . '/uploads/' . $name;   //file's folder found by __DIR__ /folder's name / extension
+            $entireName= __DIR__ . '/uploads/' . $name;   //file's folder found by __DIR__ /folder's name / extension
             // move the file into a folder
-            if(!move_uploaded_file($picture['tmp_name'], $entirename)) {   // move the file from the temporary folder to the destination
+
+            if(!move_uploaded_file($picture['tmp_name'], $entireName)) {   // move the file from the temporary folder to the destination
                 echo "the file was not deplaced";
                 die;
             }
+
+            // create different version of the picture: thumbnail of 300px and the picture resized -75%
+            
+            thumb(300, $name);
+            resizedPicture($name, 75);
+            resizedPicture($name, 25);
         }
     // write the query
     $sql='INSERT INTO `articles`(`title`, `content`, `featured_image`, `users_id`) VALUES (:title, :content, :picture, :usersid);';

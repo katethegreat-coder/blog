@@ -47,7 +47,17 @@ if(!$article) {                         // if article is not available
         ?>
         </p>
         <div><?=$article ['content'] ?></div>
+        <img src="<?=$_FILES['photo']['name']?>" alt="beerpong">
         <a href="<?=$_SERVER['HTTP_REFERER'];?>">Retour</a>
     </article>
 </body>
 </html>
+
+
+
+        
+        
+                
+
+   
+        
