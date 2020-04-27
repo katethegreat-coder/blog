@@ -11,7 +11,7 @@ if(isset($_GET['id']) && !empty($_GET ['id'])){
 // prepare the query
     $query=$db->prepare($sql);
 // insert values in the query
-    $query->bindValue(':id', $id, PDO::PARAM_STR); 
+    $query->bindValue(':id', $id, PDO::PARAM_INT); 
 // execute the query
     $query->execute();
 // disconnect the DB

@@ -1,7 +1,7 @@
 <?php
 
-// get the id of a category to be updated 
-// check if the field is filled in
+// get the id of the category to be updated 
+// check if if fields are  filled in
 if(isset($_GET['id']) && !empty($_GET ['id'])){
     // get the id and clean it
     $id=strip_tags($_GET['id']);
@@ -26,7 +26,7 @@ if(!$category){
 }
 
 // get the update : check the form
-    // check if the field is filled in
+    // check if if fields are  filled in
         if(isset($_POST['name']) && !empty($_POST['name'])) {
         // get the $_post and clean it
             $name=strip_tags($_POST['name']);

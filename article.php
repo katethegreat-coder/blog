@@ -47,7 +47,13 @@ if(!$article) {                         // if article is not available
         ?>
         </p>
         <div><?=$article ['content'] ?></div>
-        <img src="<?=$_FILES['photo']['name']?>" alt="beerpong">
+        <img src="<?=$_FILES['featured_image ']?>" alt="image">
+        <div>
+            <a href="update_article.php?id=<?= $article['id']?>">update </a>
+        </div>
+        <div>
+            <a href="delete_article.php?id=<?= $article['id']?>"> delete</a>
+        </div>
         <a href="<?=$_SERVER['HTTP_REFERER'];?>">Retour</a>
     </article>
 </body>
