@@ -75,6 +75,24 @@ if(isset($_POST) && !empty($_POST)) {
 </head>
 <body>
     <h1>Log in</h1>
+    <?php include_once('inc/header.php') ?>
+    <?php if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+    ?>
+        <div style="color:green; font-weight:bold"><?=$_SESSION['message']?></div>
+  
+    <?php 
+        unset($_SESSION['message']); 
+    }
+    ?>
+    <?php include_once('inc/header.php') ?>
+    <?php if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+    ?>
+        <div style="color:red; font-weight:bold"><?=$_SESSION['error']?></div>
+  
+    <?php 
+        unset($_SESSION['error']); 
+    }
+    ?>
     <form  method="post" enctype="multipart/form-data">
         <div>
             <label for="mail">e-mail:</label>
@@ -90,6 +108,7 @@ if(isset($_POST) && !empty($_POST)) {
         </div>
         <button>Log in</button>
     </form>
+    <a href="forgotten_password.php">Forgot your password</a> 
 </body>
 </html>
 

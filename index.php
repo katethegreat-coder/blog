@@ -21,6 +21,14 @@ require_once('inc/close.php');
 </head>
 <body>
     <?php include_once('inc/header.php') ?>
+    <?php if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+    ?>
+        <div style="color:green; font-weight:bold"><?=$_SESSION['message']?></div>
+  
+    <?php 
+        unset($_SESSION['message']); 
+    }
+    ?>
     <h1>Derniers articles</h1>
     <?php
     foreach($articles as $article): ?>
