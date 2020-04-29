@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if(isset($_POST) && !empty($_POST)) {
 
     // connect to the lib file
@@ -29,7 +31,10 @@ if(isset($_POST) && !empty($_POST)) {
         // disconnect from the DB
         require_once('inc/close.php');
 
+        // inform of the creation of the category in admin_categories.php
+
         // redirect to categories' list
+        $_SESSION['message']= 'The category was created';
         header('Location: admin_categories.php');
 
     } else {

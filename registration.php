@@ -8,10 +8,11 @@ if(isset($_POST) && !empty($_POST)) {
     require_once('inc/lib.php');
 
     // call the function to check if fields are filled in
-    if(verifForm($_POST, ['email','password'])) {
+    if(verifForm($_POST, ['name','email','password'])) {
 
         // prevent XSS vulnerabilities et get variables' content
-        $email=strip_tags($_POST['email']);
+        $name=strip_tags($_POST ['name']);
+        $email=strip_tags($_POST ['email']);
 
         // get the password and encrypt it
         $password=password_hash($_POST['password'], PASSWORD_ARGON2I);
@@ -20,12 +21,13 @@ if(isset($_POST) && !empty($_POST)) {
         require_once('inc/connect.php');
         
         // write the query
-        $sql='INSERT INTO `users`(`email`, `password`) VALUES (:email, :password);';        //:email => SQL variable
+        $sql='INSERT INTO `users`(`name`,`email`,`password`) VALUES (:name, :email, :password);';        //:email => SQL variable
 
         // prepare the query
         $query=$db->prepare($sql);
 
         // inject values
+        $query ->bindValue(':name', $name, PDO::PARAM_STR);
         $query ->bindValue(':email', $email, PDO::PARAM_STR);
         $query ->bindValue(':password', $password, PDO::PARAM_STR);
 
@@ -55,6 +57,10 @@ if(isset($_POST) && !empty($_POST)) {
 <body>
     <h1>Sign Up here!</h1>
     <form method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="name" id="name" name="name">            <!--   better choose different words from DB entries -->
+        </div>
         <div>
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email">            <!--   better choose different words from DB entries -->

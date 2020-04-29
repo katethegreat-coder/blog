@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // get the id of a category to be deleted
 if(isset($_GET['id']) && !empty($_GET ['id'])){
 // get the id and clean it
@@ -17,6 +19,7 @@ if(isset($_GET['id']) && !empty($_GET ['id'])){
 // disconnect the DB
     require_once('inc/close.php');
 // redirection once deleted
+$_SESSION['message']= "Your category was deleted";
 header('Location: admin_categories.php');
 
     } else {

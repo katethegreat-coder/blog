@@ -1,5 +1,7 @@
 <?php
- 
+
+session_start();
+require_once('inc/backto_session.php');
 require_once('inc/connect.php');
 
 $sql='SELECT `articles`.*, GROUP_CONCAT(`categories`.`name`) AS category_name FROM `articles` LEFT JOIN `articles_categories` ON `articles`.`id`=`articles_categories`.`articles_id` LEFT JOIN `categories` ON `articles_categories`.`categories_id`=`categories`.`id` GROUP BY `articles`.`id` ORDER BY `created_at` DESC;';
@@ -18,6 +20,7 @@ require_once('inc/close.php');
     <title>Accueil</title>
 </head>
 <body>
+    <?php include_once('inc/header.php') ?>
     <h1>Derniers articles</h1>
     <?php
     foreach($articles as $article): ?>

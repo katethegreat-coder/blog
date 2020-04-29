@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 if(isset($_GET['id']) && !empty($_GET ['id'])) {
     $id=$_GET['id'];
 
@@ -35,6 +38,7 @@ if(!$article) {                         // if article is not available
     <title><?=$article ['title'] ?></title>
 </head>
 <body>
+    <?php include_once('inc/header.php') ?>
     <article>
         <h1><?=$article ['title'] ?></h1>
         <p>publié le <?=date('d/m/Y à H:i', strtotime($article ['created_at']))?> dans

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once('inc/connect.php');                            // connect to the DB
 
 $sql='SELECT * FROM `categories` ORDER BY `name`ASC ;';    // write the query
@@ -19,6 +21,14 @@ require_once('inc/close.php');                             // disconnect from th
 </head>
 <body>
     <h1>Categories list</h1>
+    <?php if(isset($_SESSION['message']) && !empty($_SESSION['message'])) {
+    ?>
+        <div style="color:green; font-weight:bold"><?=$_SESSION['message']?></div>
+  
+    <?php 
+        unset($_SESSION['message']); 
+    }
+    ?>
     <table>
         <thead>
             <th>ID</th>

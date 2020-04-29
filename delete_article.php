@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // get the id of the article to be deleted
 if(isset($_GET['id']) && !empty($_GET ['id'])){
     // get the id and clean it
@@ -50,6 +52,7 @@ if(isset($_GET['id']) && !empty($_GET ['id'])){
     // disconnect the DB
     require_once('inc/close.php'); 
     
+    $_SESSION['message']= "Your article with the id $id was deleted";
     header('Location: admin_articles.php');
 
         } else {

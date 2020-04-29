@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // connect to the DB
 require_once('inc/connect.php');
 
@@ -39,8 +41,9 @@ if(isset($_POST) && !empty($_POST)) {
         
             // check if file's type is not in the list
             if(!in_array($picture['type'], $types)) {
-                echo "The file must be a png or a jpg"; 
-                die; 
+                $_SESSION['error']='The files must be a png or a jpg';
+                header('Location:new_article.php');
+                die;
             }
 
             // we limit the file size to 1Mo max
@@ -103,7 +106,8 @@ if(isset($_POST) && !empty($_POST)) {
 }
 
 // redirect to categories' list
-header('Location: index.php');    
+$_SESSION['message']= 'Your article was created with the id '.$articleId;
+header('Location: admin_articles.php');    
 
     }
 
@@ -121,6 +125,10 @@ header('Location: index.php');
 </head>
 <body>
     <h1>New article</h1>
+    <?php if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+        echo $_SESSION['error'];
+    }
+    ?>
     <form method="post" enctype="multipart/form-data" >   <!-- do not forget enctype ! for file fields -->
         <div>
             <label for="title">Title of the Article:</label>
