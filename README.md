@@ -1,2 +1,2 @@
 # blog
-create a blog
+Learn PHP => create a blog
